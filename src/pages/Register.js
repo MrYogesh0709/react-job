@@ -12,7 +12,7 @@ function Register() {
     password: "",
     isMember: true,
   });
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { user, register, login, isLoading, showAlert } = useGlobalContext();
   const toggleMember = () => {
