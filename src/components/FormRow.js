@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const FormRow = ({
   type,
@@ -9,9 +9,9 @@ const FormRow = ({
   placeholder,
 }) => {
   return (
-    <div className='form-row'>
+    <div className="form-row">
       {!horizontal && (
-        <label htmlFor={name} className='form-label'>
+        <label htmlFor={name} className="form-label">
           {name}
         </label>
       )}
@@ -20,7 +20,7 @@ const FormRow = ({
         value={value}
         name={name}
         onChange={handleChange}
-        className='form-input'
+        className="form-input"
         placeholder={placeholder}
       />
     </div>

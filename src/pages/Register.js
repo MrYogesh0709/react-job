@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context/appContext";
 import FormRow from "../components/FormRow";
 import logo from "../assets/logo.svg";
 import { Navigate } from "react-router-dom";
-
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 function Register() {
   const [values, setValues] = useState({
     name: "",
@@ -12,6 +12,7 @@ function Register() {
     password: "",
     isMember: true,
   });
+  const [showPassword, setShowPassword] = useState(true);
 
   const { user, register, login, isLoading, showAlert } = useGlobalContext();
   const toggleMember = () => {
@@ -31,6 +32,9 @@ function Register() {
     }
   };
 
+  const ShowPasswordEye = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <>
       {user && <Navigate to="/dashboard" />}
@@ -63,12 +67,38 @@ function Register() {
             />
             {/* end of single form row */}
             {/* single form row */}
-            <FormRow
-              type="password"
-              name="password"
-              value={values.password}
-              handleChange={handleChange}
-            />
+            <div className="form-row">
+              <label htmlFor="password" className="form-label">
+                password
+              </label>
+              <div className="form-row-password">
+                <input
+                  className="form-input-password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  autoComplete="false"
+                />
+                {showPassword ? (
+                  <button
+                    className="password-icon"
+                    onClick={ShowPasswordEye}
+                    type="button"
+                  >
+                    <AiFillEye />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="password-icon"
+                    onClick={ShowPasswordEye}
+                  >
+                    <AiFillEyeInvisible />
+                  </button>
+                )}
+              </div>
+            </div>
             {/* end of single form row */}
             <button
               type="submit"
