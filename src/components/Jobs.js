@@ -1,16 +1,16 @@
-import { useGlobalContext } from '../context/appContext';
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import moment from 'moment';
-import JobColumns from './JobColumns';
+import { useGlobalContext } from "../context/appContext";
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import moment from "moment";
+import JobColumns from "./JobColumns";
 
 const Jobs = () => {
   const { jobs, isLoading, deleteJob } = useGlobalContext();
 
   if (isLoading) {
-    return <div className='loading'></div>;
+    return <div className="loading"></div>;
   }
 
   if (jobs.length < 1) {
@@ -31,23 +31,23 @@ const Jobs = () => {
         {jobs.map((item) => {
           const { _id: id, company, position, status, createdAt } = item;
           let date = moment(createdAt);
-          date = date.format('MMMM Do, YYYY');
+          date = date.format("MMMM Do, YYYY");
           return (
-            <article key={id} className='job'>
-              <span className='icon'>{company.charAt(0)}</span>
-              <span className='position'>{position.toLowerCase()}</span>
-              <span className='company'>{company}</span>
-              <span className='date'>{date}</span>
-              <StatusContainer className='status' status={status}>
+            <article key={id} className="job">
+              <span className="icon">{company.charAt(0)}</span>
+              <span className="position">{position.toLowerCase()}</span>
+              <span className="company">{company}</span>
+              <span className="date">{date}</span>
+              <StatusContainer className="status" status={status}>
                 {status}
               </StatusContainer>
-              <div className='action-div'>
-                <Link to={`/edit/${id}`} className='edit-btn' type='button'>
+              <div className="action-div">
+                <Link to={`/edit/${id}`} className="edit-btn" type="button">
                   <FaEdit />
                 </Link>
                 <button
-                  className=' delete-btn'
-                  type='button'
+                  className="delete-btn"
+                  type="button"
                   onClick={() => deleteJob(id)}
                 >
                   <FaTrash />
@@ -193,14 +193,14 @@ const Container = styled.section`
   }
 `;
 const setStatusColor = (status) => {
-  if (status === 'interview') return '#0f5132';
-  if (status === 'declined') return '#842029';
-  return '#927238';
+  if (status === "interview") return "#0f5132";
+  if (status === "declined") return "#842029";
+  return "#927238";
 };
 const setStatusBackground = (status) => {
-  if (status === 'interview') return '#d1e7dd';
-  if (status === 'declined') return '#f8d7da';
-  return '#f7f3d7';
+  if (status === "interview") return "#d1e7dd";
+  if (status === "declined") return "#f8d7da";
+  return "#f7f3d7";
 };
 
 const StatusContainer = styled.span`
